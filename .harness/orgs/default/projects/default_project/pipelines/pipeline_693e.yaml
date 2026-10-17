@@ -36,6 +36,11 @@ pipeline:
             shell: bash
             script: |-
               set -eu
+              JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v java)")")")"
+              export JAVA_HOME
+              export PATH="$JAVA_HOME/bin:$PATH"
+              java -version
+              mvn -version
               mvn -B test -Dmaven.build.cache.skipCache=true
               mvn -B jacoco:report || echo "JaCoCo is not configured; skipping coverage report generation."
             intelligence:
