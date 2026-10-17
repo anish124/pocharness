@@ -23,7 +23,13 @@ pipeline:
           name: Build on Linux
           run:
             shell: bash
-            script: mvn -B -DskipTests package
+            script: |-
+              JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v java)")")")"
+              export JAVA_HOME
+              export PATH="$JAVA_HOME/bin:$PATH"
+              java -version
+              mvn -version
+              mvn -B -DskipTests package
         - id: testLinux
           name: Test on Linux
           run-test:
