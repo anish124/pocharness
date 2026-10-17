@@ -22,23 +22,23 @@ pipeline:
           name: Build on Linux
           run:
             shell: bash
-            script: "- id: buildLinux\r
+            script: "id: buildLinux\r
 
-              \  name: Build on Linux\r
+              name: Build on Linux\r
 
-              \  run:\r
+              run:\r
 
-              \    shell: bash\r
+              \  shell: bash\r
 
-              \    script: |-\r
+              \  script: |-\r
 
-              \      export JAVA_HOME=/opt/harness/tools/java/current\r
+              \    export JAVA_HOME=/opt/harness/tools/java/current\r
 
-              \      export PATH=\"$JAVA_HOME/bin:$PATH\"\r
+              \    export PATH=\"$JAVA_HOME/bin:$PATH\"\r
 
-              \      mvn -version\r
+              \    mvn -version\r
 
-              \      mvn -B -DskipTests package"
+              \    mvn -B -DskipTests package"
         - id: testLinux
           name: Test on Linux
           run-test:
