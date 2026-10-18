@@ -42,13 +42,5 @@ pipeline:
               java -version
               mvn -version
               mvn -B test -Dmaven.build.cache.skipCache=true
-              mvn -B jacoco:report || echo "JaCoCo is not configured; skipping coverage report generation."
             intelligence:
               disabled: true
-        - id: coverage
-          name: Upload Coverage
-          run:
-            shell: bash
-            script: hcli cov upload
-            env:
-              CI_ENABLE_HCLI_FOR_TESTS: "true"
