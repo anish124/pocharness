@@ -29,7 +29,7 @@ pipeline:
               export PATH="$JAVA_HOME/bin:$PATH"
               java -version
               mvn -version
-              mvn -B -DskipTests -Dspring-boot.repackage.skip=true package
+              mvn -B -DskipTests -Dmaven.build.cache.skipCache=true package
         - id: testLinux
           name: Test on Linux
           run-test:
